@@ -96,10 +96,18 @@ while run:
         paddle1.update()
         paddle2.update()
         squareBall.update()
-
-        if sprite.collide_rect(squareBall, paddle2) or sprite.collide_rect(squareBall, paddle1):
+        
+        if sprite.collide_rect(squareBall, paddle1):
             change = randint(-110,-90)/100
             squareBall.speed.x *= change
+            squareBall.rect.right = paddle1.rect.left
+        
+        if sprite.collide_rect(squareBall, paddle2):
+            change = randint(-110,-90)/100
+            squareBall.speed.x *= change
+            squareBall.rect.left= paddle2.rect.right
+
+
         if squareBall.rect.left > WIN_WIDTH:
             # RIGHT WINS 
             print('right wins')
